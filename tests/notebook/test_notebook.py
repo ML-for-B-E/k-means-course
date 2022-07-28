@@ -3,7 +3,7 @@ import pytest
 
 import matplotlib.pyplot as plt
 
-from summer.tools.common_path import NOTEBOOK_PATH
+from internal.tools.common_path import NOTEBOOK_PATH
 
 
 @pytest.mark.tuto
@@ -26,11 +26,7 @@ def test_tuto_are_without_output(dir_path=NOTEBOOK_PATH) -> None:
 @pytest.mark.parametrize(
     "notebook_name",
     [
-        "1-simple_linear_regression.ipynb",
-        "2-infer_decision_tree_from_data.ipynb",
-        "3-logistic_regression.ipynb",
-        "5-deep-learning/classifieur_cancerSein.ipynb",
-        "5-deep-learning/convolution_image.ipynb",
+        "k_means",
     ],
 )
 def test_tuto_runs_without_error(
