@@ -9,4 +9,4 @@ def test_euclidian_dist_returns_correct_value():
     #given
     distance = euclidian_dist(vector_1,vector_2)
     #then
-    np.testing.assert_allclose(output, expected_output)
+    np.testing.assert_allclose(distance, expected_distance)
