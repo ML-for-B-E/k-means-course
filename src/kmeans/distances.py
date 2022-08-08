@@ -20,3 +20,9 @@ def weighted_euclidian_dist(a: np.ndarray, b: np.ndarray, weights: np.ndarray) -
         )
 
     return dist
+
+def manhattan_dist(a: np.ndarray, b: np.ndarray) -> float:
+
+    dist = np.sum(np.abs(a-b))
+
+    return dist

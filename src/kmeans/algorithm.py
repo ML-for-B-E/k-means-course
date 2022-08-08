@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from kmeans.distances import euclidian_dist
 
 def assign_cluster(data, centroids):
@@ -31,3 +32,19 @@ def assign_cluster(data, centroids):
         centroid_errors.append(centroid_error)
 
     return (centroid_assign,centroid_errors)
+
+
+def compute_dispersion(data: np.ndarray, clusters: np.ndarray, cluster_centroid: pd.DataFrame) -> float:
+
+    data = pd.DataFrame(data)
+    data["cluster"] = clusters
+    data = data.merge(cluster_centroid, on = "cluster")
+
+    inertia_per_points = []
+    for k in range(data.shape[0]):
+        inertia_per_points = inertia_per_points + [euclidian_dist(np.array(data.iloc[k,:2]),np.array(data.iloc[k,3:])) ** 2]
+
+    data["inertia"] = inertia_per_points 
+    inertia_per_cluster = data.groupby("cluster").agg("sum")["inertia"].tolist()
+
+    return np.sum(inertia_per_cluster)
