@@ -43,7 +43,7 @@ install_requires = get_install_requires()
 
 setuptools.setup(
     name=package_name,
-    version="dev",
+    version="1.0.0",
     author="Fondation Vallet",
     author_email="ml.benin.excellence@outlook.fr",
     packages=setuptools.find_packages(where=SRC_DIR),

@@ -2,7 +2,7 @@ numpy==1.19.5
 pandas
 jupyter
 ipykernel
-ipython
+IPython
 -r ml.txt
 -r plot.txt
 -r lint.txt
