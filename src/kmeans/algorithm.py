@@ -34,9 +34,10 @@ def assign_cluster(data, centroids):
     return (centroid_assign,centroid_errors)
 
 
-def compute_dispersion(data: np.ndarray, cluster_centroid: pd.DataFrame, dim: int) -> dict:
+def compute_dispersion(data: np.ndarray, cluster_centroid: pd.DataFrame) -> dict:
 
     dataset = pd.DataFrame(data)
+    dim = dataset.shape[1]
     clusters,_ = assign_cluster(dataset, cluster_centroid)
 
     dataset["cluster"] = clusters
@@ -56,9 +57,12 @@ def compute_dispersion(data: np.ndarray, cluster_centroid: pd.DataFrame, dim: in
     count = count.rename(columns = {count.columns[0]: "cluster", count.columns[1]: "count"})
     weight_cluster = cluster_centroid.merge(count, left_on = "index", right_on = "cluster").drop(columns= "index")
 
+    mu = pd.DataFrame(dataset.iloc[:,:dim].mean()).T
+
+    inertia_per_points = []
     for k in range(weight_cluster.shape[0]):
         inertia_per_points = inertia_per_points + [
-            weight_cluster["count"][k] * euclidian_dist(np.array(weight_cluster.iloc[k,:dim]),np.array(weight_cluster.iloc[k,(dim + 1):])) ** 2]
+            weight_cluster["count"][k] * euclidian_dist(np.array(weight_cluster.iloc[k,:dim]),np.array(mu.iloc[0,:dim])) ** 2]
     
     result = result | {"inertie interclasse" :  np.sum(inertia_per_points) / np.sum(weight_cluster["count"])}
 
