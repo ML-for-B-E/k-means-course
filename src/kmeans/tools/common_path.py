@@ -5,4 +5,4 @@ SRC_PATH = LIB_PATH.parent
 ROOT_PATH = SRC_PATH.parent
 NOTEBOOK_PATH = Path(ROOT_PATH, "notebooks")
 DATA_PATH = Path(ROOT_PATH, "data")
-BUCKET_NAME = "kmeans-course"
+BUCKET_NAME = "k-means-course"
