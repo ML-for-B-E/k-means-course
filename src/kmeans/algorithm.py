@@ -64,6 +64,6 @@ def compute_dispersion(data: np.ndarray, cluster_centroid: pd.DataFrame) -> dict
         inertia_per_points = inertia_per_points + [
             weight_cluster["count"][k] * euclidian_dist(np.array(weight_cluster.iloc[k,:dim]),np.array(mu.iloc[0,:dim])) ** 2]
     
-    result = result | {"inertie interclasse" :  np.sum(inertia_per_points) / np.sum(weight_cluster["count"])}
+    result = {**result, "inertie interclasse" :  np.sum(inertia_per_points) / np.sum(weight_cluster["count"])}
 
     return result
