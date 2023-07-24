@@ -1,0 +1,3 @@
+[submodule "testing_recipes"]
+	path = testing_recipes
+	url = https://github.com/akouete-kpakpo/testing_recipes
