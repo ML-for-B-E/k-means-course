@@ -142,3 +142,7 @@ cython_debug/
 .vs
 .vscode
 data
+
+# files in submodule
+pytest.ini
+setup.py
